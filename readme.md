@@ -34,7 +34,7 @@
 	`update tablename set column1=value1, column2=value2 where column3=value3`
     * function:
 	```sql
-    bool update(String tablename, String databasename,  rray[], Where 结构体)
+    bool update(String tablename, String databasename, array[], Where 结构体)
 	//array[] 为关联数组 例：array[column1]=value1
 	```
 	
