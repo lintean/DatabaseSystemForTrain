@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Logic.h" />
+    <ClInclude Include="DBs.h" />
     <ClInclude Include="ArrayPlus.h" />
     <ClInclude Include="Column.h" />
     <ClInclude Include="Database.h" />
@@ -149,6 +149,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Column.cpp" />
+    <ClCompile Include="DBs.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Table.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

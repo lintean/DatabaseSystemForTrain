@@ -33,7 +33,7 @@
     <ClInclude Include="ArrayPlus.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Logic.h">
+    <ClInclude Include="DBs.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -42,6 +42,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Column.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DBs.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

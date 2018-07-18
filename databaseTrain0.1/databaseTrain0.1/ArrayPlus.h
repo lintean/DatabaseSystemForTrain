@@ -9,6 +9,7 @@ private:
 	int currentLength;
 	int maxLength;
 public:
+	ArrayPlus();
 	ArrayPlus(T* currentArray);
 	T getContent(int index);
 	bool addContent(T* content);
