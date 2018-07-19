@@ -7,7 +7,6 @@
 #include"Database.h"
 #include"Where.h"
 #include"Row.h"
-#include"ArrayPlus.h"
 
 using namespace std;
 

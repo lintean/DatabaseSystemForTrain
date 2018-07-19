@@ -1,6 +1,7 @@
 #include "Where.h"
 #include "Where.h"
 #include <string>
+using namespace std;
 Where::Where(string whereColumnName, string whereValue)
 {
 	columnName = whereColumnName;

@@ -140,20 +140,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DBs.h" />
-    <ClInclude Include="ArrayPlus.h" />
     <ClInclude Include="Column.h" />
     <ClInclude Include="Database.h" />
+    <ClInclude Include="Lexer.h" />
+    <ClInclude Include="Parser.h" />
     <ClInclude Include="Row.h" />
+    <ClInclude Include="Stmt.h" />
     <ClInclude Include="Table.h" />
+    <ClInclude Include="Tag.h" />
+    <ClInclude Include="Token.h" />
     <ClInclude Include="Where.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Column.cpp" />
     <ClCompile Include="Database.cpp" />
     <ClCompile Include="DBs.cpp" />
+    <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Row.cpp" />
+    <ClCompile Include="Stmt.cpp" />
     <ClCompile Include="Table.cpp" />
+    <ClCompile Include="Token.cpp" />
     <ClCompile Include="Where.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
