@@ -44,10 +44,16 @@
     <ClCompile Include="Column.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DBs.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Database.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Row.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Where.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

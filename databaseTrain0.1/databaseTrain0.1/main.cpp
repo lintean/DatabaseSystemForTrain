@@ -2,6 +2,6 @@
 using namespace std;
 
 int main() {
-	DBs dbs();
-	Parser parser(dbs);
+	//DBs dbs();
+	//Parser parser(dbs);
 }

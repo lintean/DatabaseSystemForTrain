@@ -13,6 +13,7 @@ private:
 	bool allowNull;  //是否允许为空
 	int length;  //列值的长度
 public:
+	Column();
 	Column(string colName, type colType, int colLength, bool colPrimaryKey, bool colAllowNull);
 
 	bool setColumnName(string colName);
@@ -22,7 +23,7 @@ public:
 	bool setPrimaryKey(bool colPrimaryKey);
 
 	bool getAllowNull();
-	bool setAllowNull(bool colAlloeNull);
+	bool setAllowNull(bool colAllowNull);
 
 	type getColumnType();
 	bool setColumnType(type colType);

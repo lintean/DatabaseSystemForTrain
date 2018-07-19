@@ -1,5 +1,6 @@
 #pragma once
 #include<string>
+#include<vector>  //实现 Table 中 Row 对象的动态增加
 #include"Column.h"
 #include"Row.h"
 #include"ArrayPlus.h"
@@ -11,10 +12,11 @@ private:
 	int columnCount;  //列的个数
 	int rowCount;  //该表当前行的个数
 	Column* column;  //列数组
-	ArrayPlus<Row> row; //行数组
+	vector<Row> row; //行数组
 public:
 	Table();  //默认构造函数
 	Table(string name);
+	Table(string name, int colCount);
 	Table(string name,int colCount, Column* col);
 
 	bool setTableName(string);

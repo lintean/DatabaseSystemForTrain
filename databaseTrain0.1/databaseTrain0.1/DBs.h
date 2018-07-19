@@ -1,6 +1,7 @@
 #pragma once
 #include<string>
 #include<iostream>
+#include<vector>
 #include<map>
 #include"Table.h"
 #include"Database.h"
@@ -13,7 +14,7 @@ using namespace std;
 class DBs
 {
 private:
-	ArrayPlus<Database> databasees;
+	vector<Database> databasees;
 public:
 	DBs();
 	bool insert(string databaseName, string tableName, map<string, string>);

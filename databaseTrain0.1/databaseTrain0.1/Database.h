@@ -1,16 +1,16 @@
 #pragma once
+#include<vector>
 #include"Table.h"
-#include"ArrayPlus.h"
 using namespace std;
 class Database
 {
 private:
 	string name;
 	int tableCount;
-	ArrayPlus<Table> tables;
+	vector<Table> tables;
 public:
 	Database(string databaseName);
-	bool addTable(Table*);
+	bool addTable(Table* newTable);
 	bool deleteTable(string tableName);
 
 	bool setDatabaseName(string databaseName);
