@@ -41,6 +41,9 @@
     <ClCompile Include="Column.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="DBs.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -51,9 +54,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Where.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="DBs.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
