@@ -150,6 +150,7 @@
   <ItemGroup>
     <ClCompile Include="Column.cpp" />
     <ClCompile Include="Database.cpp" />
+    <ClCompile Include="DBs.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Row.cpp" />
     <ClCompile Include="Table.cpp" />
