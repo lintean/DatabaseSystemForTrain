@@ -30,9 +30,6 @@
     <ClInclude Include="Where.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ArrayPlus.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="DBs.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -54,6 +51,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Where.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DBs.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

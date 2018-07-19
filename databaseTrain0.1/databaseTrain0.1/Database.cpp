@@ -24,6 +24,12 @@ bool Database::deleteTable(string tableName)
 	return false;
 }
 
+
+vector<Table> Database::getTables()
+{
+	return tables;
+}
+
 bool Database::setDatabaseName(string databaseName)
 {
 	name = databaseName;

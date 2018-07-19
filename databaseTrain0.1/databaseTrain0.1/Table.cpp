@@ -25,6 +25,16 @@ Table::Table(string name, int colCount, Column * col)
 
 }
 
+Column * Table::getColumnArray()
+{
+	return column;
+}
+
+vector<Row> Table::getRowArray()
+{
+	return row;
+}
+
 bool Table::setTableName(string name)
 {
 	tableName = name;

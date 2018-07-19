@@ -19,6 +19,9 @@ public:
 	Table(string name, int colCount);
 	Table(string name,int colCount, Column* col);
 
+	Column* getColumnArray();
+	vector<Row> getRowArray();
+
 	bool setTableName(string);
 	string getTableName();
 

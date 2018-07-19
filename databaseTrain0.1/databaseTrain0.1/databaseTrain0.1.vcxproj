@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DBs.h" />
-    <ClInclude Include="ArrayPlus.h" />
     <ClInclude Include="Column.h" />
     <ClInclude Include="Database.h" />
     <ClInclude Include="Row.h" />
@@ -150,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="Column.cpp" />
     <ClCompile Include="Database.cpp" />
+    <ClCompile Include="DBs.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Row.cpp" />
     <ClCompile Include="Table.cpp" />

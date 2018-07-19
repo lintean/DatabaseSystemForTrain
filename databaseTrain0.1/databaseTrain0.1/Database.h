@@ -9,10 +9,12 @@ private:
 	int tableCount;
 	vector<Table> tables;
 public:
+	
 	Database(string databaseName);
 	bool addTable(Table* newTable);
 	bool deleteTable(string tableName);
 
+	vector<Table> getTables();
 	bool setDatabaseName(string databaseName);
 	string getDatabaseName();
 
