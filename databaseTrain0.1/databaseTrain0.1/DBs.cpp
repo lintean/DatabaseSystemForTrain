@@ -24,7 +24,7 @@ bool DBs::insert(string databaseName, string tableName, map<string,string> inser
 				if (currentTables[j].getTableName() == tableName)
 				{
 					string* newRow = new string[currentTables[j].getColumnCount()];
-					Column* currentColumnArray = currentTables[j].getColumnArray();
+					vector<Column> currentColumnArray = currentTables[j].getColumnArray();
 					for (int n = 0; n < currentTables[j].getColumnCount(); n++)
 					{
 						if (insertData.count(currentColumnArray[n].getColumnName()) > 0)  //如果关联数组中存在这个键
@@ -104,7 +104,7 @@ Table DBs::select(string databaseName, string tableName, string * columnName, in
 				{
 					
 					
-					Column* currentColumnArray = currentTables[j].getColumnArray();  //记录当前表的列对象数组
+					vector<Column> currentColumnArray = currentTables[j].getColumnArray();  //记录当前表的列对象数组
 					vector<Row> currentRowArray = currentTables[j].getRowArray();  //记录当前表的行对象数组
 					Table newTable = Table("selectStatementReturnTable",columnCount);  //select 函数的返回值
 					for (int n = 0; n < columnCount; n++)
@@ -164,17 +164,17 @@ bool DBs::update(string databaseName, string tableName, map<string, string> upda
 	{
 		if (databasees[i].getDatabaseName == databaseName)
 		{
-			vector<Table> currentTables;
+			vector<Table> currentTables;  //储存当前数据库的表对象数组
 			currentTables = databasees[i].getTables();
 			for (int j = 0; j < currentTables.size(); j++)
 			{
 				if (currentTables[j].getTableName() == tableName)
 				{
-					Table currentTable = currentTables[j];
-					Column* currentColumnArray = currentTable.getColumnArray();
-					vector<Row> currentRowArray = currentTable.getRowArray();
+					Table currentTable = currentTables[j];  //储存需要更新的表
+					vector<Column> currentColumnArray = currentTable.getColumnArray();  //储存需要更新的表的列对象数组
+					vector<Row> currentRowArray = currentTable.getRowArray();  //储存需要更新的表的行
 
-					//找到 where 语句中 column 在该表的 column 对象数组中的下标，并储存在 columnIndex 变量中
+					//找到 where 语句中的 column 在该表的 column 对象数组中的下标，并储存在 columnIndex 变量中
 					int columnIndex = -1;
 					for (int n = 0; n < currentTable.getColumnCount(); n++)
 					{
@@ -212,7 +212,7 @@ bool DBs::update(string databaseName, string tableName, map<string, string> upda
 						{
 							for (int m = 0; m < updateData.size(); m++)
 							{
-								currentRowArray[n].setCell(rowIndex[m], updateData[currentColumnArray[rowIndex[m]].getColumnName()]);
+								currentRowArray[n].setCell(rowIndex[m], updateData[ (currentColumnArray[rowIndex[m]]).getColumnName() ]);
 							}
 						}
 					}
@@ -251,12 +251,12 @@ bool DBs::dropTable(string databaseName, string tableName)
 	return false;
 }
 
-bool DBs::createDatabase(Database databaseName)
+bool DBs::createDatabase(Database* database)
 {
 	bool databaseExisted = false;
 	for (auto it = databasees.begin(); it != databasees.end(); it++)
 	{
-		if (it->getDatabaseName() == databaseName.getDatabaseName())
+		if (it->getDatabaseName() == database->getDatabaseName())
 		{
 			databaseExisted = true;
 			break;
@@ -269,7 +269,7 @@ bool DBs::createDatabase(Database databaseName)
 	}
 	else
 	{
-		databasees.push_back(databaseName);
+		databasees.push_back(*database);
 		return true;
 	}
 }
@@ -286,4 +286,25 @@ bool DBs::dropDatabase(string databaseName)
 	}
 	cout << "Do not exist this database!\n";
 	return false;
+}
+
+int DBs::getTableColumnCount(string databaseName, string tableName)
+{
+	for (int i = 0; i < databasees.size(); i++)
+	{
+		if (databasees[i].getDatabaseName == databaseName)
+		{
+			for (int j = 0; j < databasees[i].getTables().size(); j++)
+			{
+				if ((databasees[i].getTables())[j].getTableName() == tableName)
+				{
+					return (databasees[i].getTables())[j].getColumnCount();
+				}
+			}
+			cout << "No such table!\n";
+			return -1;
+		}
+	}
+	cout << "No such database!\n";
+	return -1;
 }

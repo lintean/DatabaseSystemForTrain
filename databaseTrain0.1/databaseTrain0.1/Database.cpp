@@ -13,7 +13,7 @@ bool Database::addTable(Table * newTable)
 	bool tableExisted = false;
 	for (int i = 0; i < tableCount; i++)
 	{
-		if (tables[i].getTableName() == newTable->getTableName())
+		if (tables[i].getTableName() == newTable->getTableName())  //检查新的 Table 是否已经存在
 		{
 			tableExisted = true;
 			break;
@@ -27,7 +27,7 @@ bool Database::addTable(Table * newTable)
 	else
 	{
 		tables.push_back(*newTable);
-		tableCount++;
+		tableCount++;  //当前数据库中表的数量加一
 		return true;
 	}
 	
