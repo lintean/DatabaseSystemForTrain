@@ -3,6 +3,7 @@
 #include<vector>  //实现 Table 中 Row 对象的动态增加
 #include"Column.h"
 #include"Row.h"
+#include"Where.h"
 using namespace std;
 class Table
 {
@@ -30,7 +31,8 @@ public:
 	int getRowCount();
 
 	bool addRow(Row*);
-	bool deleteRow(int rowIndex);
+	bool deleteRow(int rowIndex);  //通过行下标
+	bool deleteRow(Where whe);  //通过 where 语句 
 
 	void showTable();
 

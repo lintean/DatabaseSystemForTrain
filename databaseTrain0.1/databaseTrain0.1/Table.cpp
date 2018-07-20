@@ -38,7 +38,7 @@ vector<Row> Table::getRowArray()
 bool Table::setTableName(string name)
 {
 	tableName = name;
-	return false;
+	return true;
 }
 
 string Table::getTableName()
@@ -49,7 +49,7 @@ string Table::getTableName()
 bool Table::setColumnCount(int c)
 {
 	columnCount = c;
-	return false;
+	return true;
 }
 
 int Table::getColumnCount()
@@ -65,13 +65,45 @@ int Table::getRowCount()
 bool Table::addRow(Row * newRow)
 {
 	this->row.push_back(*(newRow));
-	return false;
+	rowCount++;
+	return true;
+}
+
+bool Table::deleteRow(Where whe)
+{
+	int col_num = -1;
+	for (int i = 0; i < columnCount; i++)
+	{
+		if (column[i].getColumnName() == whe.getWhereColumnName())
+		{
+			col_num = i;
+			break;
+		}
+	}
+	if (col_num == -1)  //where 语句中的列名错误
+	{
+		cout << "Column name errror!\n";
+		return false;
+	}
+	else
+	{
+		for (auto it = row.begin(); it != row.end(); it++)
+		{
+			if (it->getCell(col_num) == whe.getWhereValue())
+			{
+				row.erase(it);
+				rowCount--;
+			}
+		}
+	}
+	
 }
 
 bool Table::deleteRow(int rowIndex)
 {
 	row.erase(row.begin() + rowIndex - 1);
-	return false;
+	rowCount--;
+	return true;
 }
 
 void Table::showTable()

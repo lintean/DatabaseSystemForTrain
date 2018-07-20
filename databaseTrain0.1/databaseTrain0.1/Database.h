@@ -1,6 +1,7 @@
 #pragma once
 #include<vector>
 #include"Table.h"
+#include"Where.h"
 using namespace std;
 class Database
 {
@@ -11,8 +12,10 @@ private:
 public:
 	
 	Database(string databaseName);
+
 	bool addTable(Table* newTable);
-	bool deleteTable(string tableName);
+	bool deleteTableRow(string tableName, Where);
+	bool dropTable(string tableName);
 
 	vector<Table> getTables();
 	bool setDatabaseName(string databaseName);

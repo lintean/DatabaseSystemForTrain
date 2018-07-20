@@ -2,6 +2,7 @@
 #include"Table.h"
 #include"Column.h"
 #include"Row.h"
+#include"Database.h"
 #include<iostream>
 #include<vector>
 #include<string>
@@ -72,6 +73,19 @@ bool DBs::insert(string databaseName, string tableName, string * insertData)
 		}
 	}
 	cout << "No such database!\n";
+	return false;
+}
+
+
+bool DBs::Delete(string databaseName, string tableName, Where whe)  //删除表中的一行
+{
+	for (auto it = databasees.begin(); it != databasees.end(); it++)
+	{
+		if (it->getDatabaseName() == databaseName)
+		{
+			return it->deleteTableRow(tableName, whe);
+		}
+	}
 	return false;
 }
 
@@ -213,4 +227,63 @@ bool DBs::update(string databaseName, string tableName, map<string, string> upda
 	return false;
 }
 
+bool DBs::createTable(string databaseName, Table * newTable)
+{
+	for (auto it = databasees.begin(); it != databasees.end(); it++)
+	{
+		if (it->getDatabaseName() == databaseName)
+		{
+			return it->addTable(newTable);
+		}
+	}
+	return false;
+}
 
+bool DBs::dropTable(string databaseName, string tableName)
+{
+	for (auto it = databasees.begin(); it != databasees.end(); it++)
+	{
+		if (it->getDatabaseName() == databaseName)
+		{
+			return it->dropTable(tableName);
+		}
+	}
+	return false;
+}
+
+bool DBs::createDatabase(Database databaseName)
+{
+	bool databaseExisted = false;
+	for (auto it = databasees.begin(); it != databasees.end(); it++)
+	{
+		if (it->getDatabaseName() == databaseName.getDatabaseName())
+		{
+			databaseExisted = true;
+			break;
+		}
+	}
+	if (databaseExisted)
+	{
+		cout << "DataBase existed!\n";
+		return false;
+	}
+	else
+	{
+		databasees.push_back(databaseName);
+		return true;
+	}
+}
+
+bool DBs::dropDatabase(string databaseName)
+{
+	for (auto it = databasees.begin(); it != databasees.end(); it++)
+	{
+		if (it->getDatabaseName() == databaseName)
+		{
+			databasees.erase(it);
+			return true;
+		}
+	}
+	cout << "Do not exist this database!\n";
+	return false;
+}
