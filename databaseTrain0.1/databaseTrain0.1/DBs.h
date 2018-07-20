@@ -7,14 +7,13 @@
 #include"Database.h"
 #include"Where.h"
 #include"Row.h"
-#include"ArrayPlus.h"
 
 using namespace std;
 
 class DBs
 {
 private:
-	vector<Database> databasees;
+	vector<Database> databasees;  //储存数据库对象的数组
 public:
 	DBs();
 	bool insert(string databaseName, string tableName, map<string, string> insertData);

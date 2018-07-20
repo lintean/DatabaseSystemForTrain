@@ -130,9 +130,10 @@ Table DBs::select(string databaseName, string tableName, string * columnName, in
 								newRowData[k] = currentRowArray[m].getCell(rowIndex[k]);
 							}
 							newTable.addRow(new Row(newRowData));  //将创建的新行加到要返回的表中
-						}
-							
+						}	
 					}
+
+					return newTable;
 				}
 			}
 			cout << "No such table!\n";
@@ -141,6 +142,75 @@ Table DBs::select(string databaseName, string tableName, string * columnName, in
 	}
 	cout << "No such database!\n";
 	return Table();
+}
+
+bool DBs::update(string databaseName, string tableName, map<string, string> updateData, Where updateCodition)
+{
+	for (int i = 0; i < databasees.size(); i++)
+	{
+		if (databasees[i].getDatabaseName == databaseName)
+		{
+			vector<Table> currentTables;
+			currentTables = databasees[i].getTables();
+			for (int j = 0; j < currentTables.size(); j++)
+			{
+				if (currentTables[j].getTableName() == tableName)
+				{
+					Table currentTable = currentTables[j];
+					Column* currentColumnArray = currentTable.getColumnArray();
+					vector<Row> currentRowArray = currentTable.getRowArray();
+
+					//找到 where 语句中 column 在该表的 column 对象数组中的下标，并储存在 columnIndex 变量中
+					int columnIndex = -1;
+					for (int n = 0; n < currentTable.getColumnCount(); n++)
+					{
+						if (currentColumnArray[n].getColumnName() == updateCodition.getWhereColumnName())
+						{
+							columnIndex = n;
+							break;
+						}
+					}
+					if (columnIndex == -1)
+					{
+						cout << "Where statement error! No such column!\n";
+						return false;
+					}
+
+					//找到 set 语句中的 column 在该表的 column 对象数组中的下标，并储存在 rowIndex 数组中
+					int* rowIndex = new int[updateData.size()];
+					int m = 0;  //内层 for 循环的循环变量，确保当前 column 对象数组只被遍历一次
+					for (int n = 0; n < updateData.size(); n++)
+					{
+						for (; m < currentTable.getColumnCount(); m++)
+						{
+							if (updateData.count(currentColumnArray[m].getColumnName()) > 0)  //关联数组中存在该 key 值
+							{
+								rowIndex[n] = m;  //将该 column 对象的下标储存到 rowIndex 数组中
+								break;
+							}
+						}
+					}
+
+					//遍历当前表的 Row 对象数组，找到需要修改的 Row 对象并修改
+					for (int n = 0; n < currentTable.getRowCount(); n++)
+					{
+						if (currentRowArray[n].getCell(columnIndex) == updateCodition.getWhereValue())
+						{
+							for (int m = 0; m < updateData.size(); m++)
+							{
+								currentRowArray[n].setCell(rowIndex[m], updateData[currentColumnArray[rowIndex[m]].getColumnName()]);
+							}
+						}
+					}
+					return true;  //更新成功
+				}
+			}
+			cout << "No such table!\n";
+			return false;
+		}
+	}
+	cout << "No such database!\n";
+	return false;
 }
 
 
