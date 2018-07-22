@@ -53,9 +53,11 @@ bool Database::deleteTableRow(string tableName, Where whe)
 	{
 		if (it->getTableName() == tableName)
 		{
-			it->deleteRow(whe);
+			return it->deleteRow(whe);
 		}
 	}
+	cout << "Table name error!\n";
+	return false;
 }
 
 

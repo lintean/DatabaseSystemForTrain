@@ -1,7 +1,7 @@
+#include<iostream>
 #include"DBs.h"
 using namespace std;
+int main()
+{
 
-int main() {
-	//DBs dbs();
-	//Parser parser(dbs);
 }

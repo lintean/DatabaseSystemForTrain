@@ -111,6 +111,7 @@ bool Table::deleteRow(Where whe)
 	}
 	else
 	{
+		int rowCountOld = rowCount;
 		for (auto it = row.begin(); it != row.end(); it++)
 		{
 			if (it->getCell(col_num) == whe.getWhereValue())
@@ -119,15 +120,22 @@ bool Table::deleteRow(Where whe)
 				rowCount--;
 			}
 		}
+
+		if (rowCount == rowCountOld)
+		{
+			cout << "Do not exist such row.\n";
+			return false;
+		}
+		else
+			return true;
 	}
-	
 }
 
 bool Table::addColumn(Column * newColumn)
 {
 	for (int i = 0; i < column.size(); i++)
 	{
-		if (column[i].getColumnName == newColumn->getColumnName())
+		if (column[i].getColumnName() == newColumn->getColumnName())
 		{
 			cout << "Column Existed!\n";
 			return false;

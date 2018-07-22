@@ -1,4 +1,4 @@
-#include "DBs.h"
+#include"DBs.h"
 #include"Table.h"
 #include"Column.h"
 #include"Row.h"
@@ -15,7 +15,7 @@ bool DBs::insert(string databaseName, string tableName, map<string,string> inser
 {
 	for (int i = 0; i < databasees.size(); i++)
 	{
-		if (databasees[i].getDatabaseName == databaseName)
+		if (databasees[i].getDatabaseName() == databaseName)
 		{
 			vector<Table> currentTables;
 			currentTables = databasees[i].getTables();
@@ -56,7 +56,7 @@ bool DBs::insert(string databaseName, string tableName, string * insertData)
 {
 	for (int i = 0; i < databasees.size(); i++)
 	{
-		if (databasees[i].getDatabaseName == databaseName)
+		if (databasees[i].getDatabaseName() == databaseName)
 		{
 			vector<Table> currentTables;
 			currentTables = databasees[i].getTables();
@@ -94,7 +94,7 @@ Table DBs::select(string databaseName, string tableName, string * columnName, in
 {
 	for (int i = 0; i < databasees.size(); i++)
 	{
-		if (databasees[i].getDatabaseName == databaseName)
+		if (databasees[i].getDatabaseName() == databaseName)
 		{
 			vector<Table> currentTables;  //记录当前数据库的表对象数组
 			currentTables = databasees[i].getTables();
@@ -108,7 +108,7 @@ Table DBs::select(string databaseName, string tableName, string * columnName, in
 					vector<Row> currentRowArray = currentTables[j].getRowArray();  //记录当前表的行对象数组
 					Table newTable = Table("selectStatementReturnTable",columnCount);  //select 函数的返回值
 					for (int n = 0; n < columnCount; n++)
-						(newTable.getColumnArray())[n].setColumnName = columnName[n];
+						(newTable.getColumnArray())[n].setColumnName(columnName[n]);
 
 					int columnIndex;  //记录 where 语句中的 columnName 所属对象在 Table 的 column 对象数组中的下标
 					//找到 where 语句中对应的列在当前表的列数组中的下标 
@@ -162,7 +162,7 @@ bool DBs::update(string databaseName, string tableName, map<string, string> upda
 {
 	for (int i = 0; i < databasees.size(); i++)
 	{
-		if (databasees[i].getDatabaseName == databaseName)
+		if (databasees[i].getDatabaseName() == databaseName)
 		{
 			vector<Table> currentTables;  //储存当前数据库的表对象数组
 			currentTables = databasees[i].getTables();
@@ -292,7 +292,7 @@ int DBs::getTableColumnCount(string databaseName, string tableName)
 {
 	for (int i = 0; i < databasees.size(); i++)
 	{
-		if (databasees[i].getDatabaseName == databaseName)
+		if (databasees[i].getDatabaseName() == databaseName)
 		{
 			for (int j = 0; j < databasees[i].getTables().size(); j++)
 			{
