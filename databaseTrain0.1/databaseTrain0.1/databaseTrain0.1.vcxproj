@@ -143,13 +143,13 @@
     <ClInclude Include="Column.h" />
     <ClInclude Include="Database.h" />
     <ClInclude Include="Lexer.h" />
-    <ClInclude Include="Parser.h" />
     <ClInclude Include="Row.h" />
     <ClInclude Include="Stmt.h" />
     <ClInclude Include="Table.h" />
     <ClInclude Include="Tag.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="Where.h" />
+    <ClInclude Include="Word.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Column.cpp" />
@@ -157,12 +157,11 @@
     <ClCompile Include="DBs.cpp" />
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Row.cpp" />
     <ClCompile Include="Stmt.cpp" />
     <ClCompile Include="Table.cpp" />
-    <ClCompile Include="Token.cpp" />
     <ClCompile Include="Where.cpp" />
+    <ClCompile Include="Word.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
