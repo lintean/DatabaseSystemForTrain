@@ -74,9 +74,6 @@
     <ClCompile Include="Lexer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Stmt.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Word.cpp">
       <Filter>源文件</Filter>
     </ClCompile>

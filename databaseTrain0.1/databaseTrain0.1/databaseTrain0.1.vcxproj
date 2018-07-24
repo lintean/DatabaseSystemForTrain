@@ -158,7 +158,6 @@
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Row.cpp" />
-    <ClCompile Include="Stmt.cpp" />
     <ClCompile Include="Table.cpp" />
     <ClCompile Include="Where.cpp" />
     <ClCompile Include="Word.cpp" />

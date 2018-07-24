@@ -90,7 +90,7 @@ bool DBs::Delete(string databaseName, string tableName, Where whe)  //删除表中的
 }
 
 
-Table DBs::select(string databaseName, string tableName, string * columnName, int columnCount, Where selectCondition)
+Table DBs::select(string databaseName, string tableName, vector<string> columnName, Where selectCondition)
 {
 	for (int i = 0; i < databasees.size(); i++)
 	{
@@ -106,8 +106,8 @@ Table DBs::select(string databaseName, string tableName, string * columnName, in
 					
 					vector<Column> currentColumnArray = currentTables[j].getColumnArray();  //记录当前表的列对象数组
 					vector<Row> currentRowArray = currentTables[j].getRowArray();  //记录当前表的行对象数组
-					Table newTable = Table("selectStatementReturnTable",columnCount);  //select 函数的返回值
-					for (int n = 0; n < columnCount; n++)
+					Table newTable = Table("selectStatementReturnTable",(int)columnName.size());  //select 函数的返回值
+					for (int n = 0; n < columnName.size(); n++)
 						(newTable.getColumnArray())[n].setColumnName(columnName[n]);
 
 					int columnIndex;  //记录 where 语句中的 columnName 所属对象在 Table 的 column 对象数组中的下标
@@ -121,8 +121,8 @@ Table DBs::select(string databaseName, string tableName, string * columnName, in
 						}
 					}
 					//找到 select 语句中对应的列在当前表的列数组中的下标
-					int* rowIndex = new int[columnCount];
-					for (int n = 0; n < columnCount; n++)
+					int* rowIndex = new int[columnName.size()];
+					for (int n = 0; n < columnName.size(); n++)
 					{
 						for (int m = 0; m < currentTables[j].getColumnCount(); m++)
 						{
@@ -138,8 +138,8 @@ Table DBs::select(string databaseName, string tableName, string * columnName, in
 					{
 						if (selectCondition.getWhereValue() == currentRowArray[m].getCell(columnIndex))
 						{
-							string* newRowData = new string[columnCount];
-							for (int k = 0; k < columnCount; k++)
+							string* newRowData = new string[columnName.size()];
+							for (int k = 0; k < columnName.size(); k++)
 							{
 								newRowData[k] = currentRowArray[m].getCell(rowIndex[k]);
 							}
@@ -158,7 +158,7 @@ Table DBs::select(string databaseName, string tableName, string * columnName, in
 	return Table();
 }
 
-Table DBs::select(string databaseName, string tableName, string * columnName, int columnCount)
+Table DBs::select(string databaseName, string tableName, vector<string> columnName)
 {
 	for (int i = 0; i < databasees.size(); i++)
 	{
@@ -174,13 +174,13 @@ Table DBs::select(string databaseName, string tableName, string * columnName, in
 
 					vector<Column> currentColumnArray = currentTables[j].getColumnArray();  //记录当前表的列对象数组
 					vector<Row> currentRowArray = currentTables[j].getRowArray();  //记录当前表的行对象数组
-					Table newTable = Table("selectStatementReturnTable", columnCount);  //select 函数的返回值
-					for (int n = 0; n < columnCount; n++)
+					Table newTable = Table("selectStatementReturnTable", (int)columnName.size());  //select 函数的返回值
+					for (int n = 0; n < columnName.size(); n++)
 						(newTable.getColumnArray())[n].setColumnName(columnName[n]);
 
 					//找到 select 语句中对应的列在当前表的列数组中的下标
-					int* rowIndex = new int[columnCount];
-					for (int n = 0; n < columnCount; n++)
+					int* rowIndex = new int[columnName.size()];
+					for (int n = 0; n < columnName.size(); n++)
 					{
 						for (int m = 0; m < currentTables[j].getColumnCount(); m++)
 						{
@@ -195,8 +195,8 @@ Table DBs::select(string databaseName, string tableName, string * columnName, in
 					//遍历当前表中的每一行，选出对应列的内容创建新行并加入 newTable 中
 					for (int m = 0; m < currentTables[j].getRowCount(); m++)
 					{
-						string* newRowData = new string[columnCount];
-						for (int k = 0; k < columnCount; k++)
+						string* newRowData = new string[columnName.size()];
+						for (int k = 0; k < columnName.size(); k++)
 						{
 							newRowData[k] = currentRowArray[m].getCell(rowIndex[k]);
 						}

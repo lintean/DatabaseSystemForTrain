@@ -4,7 +4,6 @@
   Lexer.cpp
   main.cpp
   Row.cpp
-  Stmt.cpp
   Table.cpp
   Where.cpp
   Word.cpp
