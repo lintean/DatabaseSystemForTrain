@@ -158,6 +158,61 @@ Table DBs::select(string databaseName, string tableName, string * columnName, in
 	return Table();
 }
 
+Table DBs::select(string databaseName, string tableName, string * columnName, int columnCount)
+{
+	for (int i = 0; i < databasees.size(); i++)
+	{
+		if (databasees[i].getDatabaseName() == databaseName)
+		{
+			vector<Table> currentTables;  //记录当前数据库的表对象数组
+			currentTables = databasees[i].getTables();
+			for (int j = 0; j < currentTables.size(); j++)
+			{
+				if (currentTables[j].getTableName() == tableName)
+				{
+
+
+					vector<Column> currentColumnArray = currentTables[j].getColumnArray();  //记录当前表的列对象数组
+					vector<Row> currentRowArray = currentTables[j].getRowArray();  //记录当前表的行对象数组
+					Table newTable = Table("selectStatementReturnTable", columnCount);  //select 函数的返回值
+					for (int n = 0; n < columnCount; n++)
+						(newTable.getColumnArray())[n].setColumnName(columnName[n]);
+
+					//找到 select 语句中对应的列在当前表的列数组中的下标
+					int* rowIndex = new int[columnCount];
+					for (int n = 0; n < columnCount; n++)
+					{
+						for (int m = 0; m < currentTables[j].getColumnCount(); m++)
+						{
+							if (currentColumnArray[m].getColumnName() == columnName[n])
+							{
+								rowIndex[n] = m;
+								break;
+							}
+						}
+					}
+
+					//遍历当前表中的每一行，选出对应列的内容创建新行并加入 newTable 中
+					for (int m = 0; m < currentTables[j].getRowCount(); m++)
+					{
+						string* newRowData = new string[columnCount];
+						for (int k = 0; k < columnCount; k++)
+						{
+							newRowData[k] = currentRowArray[m].getCell(rowIndex[k]);
+						}
+						newTable.addRow(new Row(newRowData));  //将创建的新行加到要返回的表中
+					}
+					return newTable;
+				}
+			}
+			cout << "No such table!\n";
+			return Table();
+		}
+	}
+	cout << "No such database!\n";
+	return Table();
+}
+
 bool DBs::update(string databaseName, string tableName, map<string, string> updateData, Where updateCodition)
 {
 	for (int i = 0; i < databasees.size(); i++)
